@@ -24,6 +24,7 @@
   </div>
   <qa-router-button
       data-package-name="com.hybrid.demo.sample"
+      data-key="router"
       data-page="/"
       data-params="{}"
       data-design-params='{"fontSize": 16,"designWidth": 1080}'
@@ -74,6 +75,16 @@ export default {
   },
   created() {
     this.getFullText()
+  },
+  mounted() {
+    setTimeout(() => {
+      window.isEnvSupportRouter((isSupport) => {
+        console.info(`isSupport ${isSupport}`);
+        if (isSupport) {
+          window.routeToQuickapp('router')
+        }
+      })
+    })
   },
   methods: {
     getFullText() {
